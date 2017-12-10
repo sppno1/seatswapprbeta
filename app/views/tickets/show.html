@@ -1,0 +1,35 @@
+
+
+	<div class="eachpagediv">
+		<h3> Seat Information </h3>
+				<table class="table">
+		      <thead>
+		        <tr>
+		          <th>Departure Date</th>
+		          <th>Departure Airport</th>
+		          <th>Airline</th>
+		          <th>Flight Number</th>
+		          <th>Seat Number</th>
+		          <th>Seat Description</th>
+		          <th>Price</th>
+		          <th>Actions</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        <tr>
+		          <td><%= @ticket.departure_date %></td>
+		          <td><%= @ticket.departure_airport %></td>
+		          <td><%= @ticket.airline %></td>
+		          <td><%= @ticket.flight_num %></td>
+		          <td><%= @ticket.seat_num %></td>
+		          <td><%= @ticket.seat_desc %></td>
+		          <td><%= number_to_currency(@ticket.price) %></td>
+
+		          <td>
+		          	<% if current_user %>
+							  <%= link_to 'Delete', ticket_path(@ticket.id), method: :delete, data: {confirm: 'Are you sure?' } %></td>
+							  <% end %>
+		        </tr>
+		      </tbody>
+		    </table>
+	</div>

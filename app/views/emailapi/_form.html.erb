@@ -1,0 +1,14 @@
+
+
+<%= form_tag('/emailapi/subscribe', method: "post", id: "subscribe", remote: "true") do %>
+   
+   <%= email_field(:email, :address, {id: "fieldname1", placeholder: "Email Address"}) %>
+
+    <%= text_field(:MMERGE3, :zip, {id: "fieldname2", placeholder: "Zip Code"}) %>
+
+   <%= submit_tag "Join Now!", class: 'btn btn-primary' %>
+<% end %>
+
+
+
+

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Seatswappr - Swap or switch my airline seat. Peer to Peer exchange to swap seats on flights. Swap airline seats">
+    <meta name="google-site-verification" content="vIoUGZXZmvP7sMg_NCcun8NfgPsBJfq_-liJCnv9MKM" />
+    <meta name="google-site-verification" content="L5h6Si5Jz8RWOzgm0ydN6k8HRoMF0R3wREWJaWDQEtA" />
+    <meta name="author" content="SeatSwappr">
+    
+    <title>Seatswappr-Coming Soon</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'autocomplete-rails.js' %>
+    <%= csrf_meta_tags %>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+  </head>
+
+  <body>
+  <% if user_signed_in? %>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <%= link_to root_path do %>
+           <%= image_tag "/img/logo/logoSeatSwappr.png", class: 'navbar-brand' %>
+        <% end %>
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <% new_messages = current_user.mailbox.inbox(:unread => true).count(:id, :distinct => true) %>
+          <ul class="nav navbar-nav">
+              <li><%= link_to "My Account (#{current_user.username})", edit_user_registration_path %></li>
+              <li><%= link_to "My Inbox (#{new_messages})", conversations_path %></li>
+              <li><%= link_to "View My Seats", tickets_path, method: "get" %></li>
+              <li><%= link_to "Sell New Seat", new_ticket_path, method: "get" %></li>
+              <li><%= link_to "Search Seats", new_search_path %></li>
+              <li><%= link_to "FAQ", faq_path %></li>
+              <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <% else %>
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <%= link_to root_path do %>
+                 <%= image_tag "/img/logo/logoSeatSwappr.png", class: 'navbar-brand' %>
+          <% end %>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><%= link_to 'Log In', new_user_session_path %></li>
+              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+              <li><%= link_to "FAQ", faq_path %></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Press Releases <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://www.psfk.com/2016/01/change-your-plane-seat-flight-check-in-seatswappr.html">January 19, 2016</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+
+
+    <% end %>
+
+
+
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>">
+          <%= value %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= yield :top_content %>
+
+    <div class="container">
+        <h3><%= yield :header %></h3>
+      <%= yield %>
+
+    <hr>
+      <footer class="footer">
+      <h5> © Copyright 2018 Seatswappr All Rights Reserved </h5>
+     </footer>
+
+    </div>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+   
+
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<% if conversation.is_unread?(current_user) %>
+  <li class="list-group-item clearfix" style="font-size: 20px;">
+  <%= link_to conversation.subject, conversation_path(conversation) %>
+<% else %>
+  <li class="list-group-item clearfix">
+  <%= link_to conversation.subject, conversation_path(conversation) %>
+<% end %>
+
+  <div class="btn-group-vertical pull-right">
+    <% if conversation.is_trashed?(current_user) %>
+      <%= link_to 'Restore', restore_conversation_path(conversation), class: 'btn btn-xs btn-info', method: :post %>
+    <% else %>
+      <%= link_to 'X', conversation_path(conversation), class: 'btn btn-xs btn-danger', method: :delete,
+                  data: {confirm: 'Are you sure?'} %>
+
+      <% if conversation.is_unread?(current_user) %>
+      <%= link_to 'Mark as read', mark_as_read_conversation_path(conversation),
+                  class: 'btn btn-xs btn-info', method: :post %>
+
+      <% end %>
+    <% end %>
+  </div>
+
+  <p><%= render 'conversations/participants', conversation: conversation %></p>
+
+  <p><%= conversation.last_message.body %>
+    <small>(<span class="text-muted"><%= conversation.last_message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></span>)</small></p>
+</li>

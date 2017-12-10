@@ -1,0 +1,5 @@
+ENV['HTTP_USER'] = 'seatswappr'
+ENV['HTTP_PASS'] = 'shreyas1dan2gunjan3'
+ENV["GMAIL_USERNAME"] = 'seatswappr'
+ENV["GMAIL_PASSWORD"] = 'shreyasdangunjan'
+ENV["MAILCHIMP_API"]= '6029782567227ebba20fbce6b673ca22-us1'

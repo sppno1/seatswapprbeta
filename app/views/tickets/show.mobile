@@ -1,0 +1,24 @@
+<% content_for :title, "Seat Information" %>
+
+<div data-role="header" data-position="fixed"> 
+    <h1>SeatSwappr </h1>
+        
+      <% unless user_signed_in? %>
+      <%= link_to 'Sign Up', new_user_registration_path, "class" => "ui-btn-right" %>
+
+      <% else %>
+        <%= link_to 'Delete Seat', ticket_path(@ticket.id), "class" => "ui-btn-left", method: :delete, data: {confirm: 'Are you sure?' } %>
+        <%= link_to "New Seat", new_ticket_path, method: "get", "class" => "ui-btn-right" %>
+      <% end %>
+</div>
+
+<div data-role="content">
+		<h3> Seat Information </h3>
+		<p><strong>Date: </strong><%= @ticket.departure_date %></p>
+		<p><strong>Airport: </strong><%= @ticket.departure_airport %></p>
+		<p><strong>Airline: </strong><%= @ticket.airline %></p>
+		<p><strong>Flight Numnber: </strong><%= @ticket.flight_num %></p>
+		<p><strong>Seat Number: </strong><%= @ticket.seat_num %></p>
+		<p><strong>Seat Description: </strong><%= @ticket.seat_desc %></p>
+		<p><strong>Price: </strong><%= number_to_currency(@ticket.price) %></p>
+</div>

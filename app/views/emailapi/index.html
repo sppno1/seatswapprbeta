@@ -1,0 +1,15 @@
+<body class="landing">
+
+<%= form_tag('/emailapi/subscribe', method: "post", id: "subscribe", remote: "true") do %>
+   <%= email_field(:email, :address, {id: "email", placeholder: "email address"}) %>
+    <%= text_field(:MERGE3, :address, {id: "MERGE3", placeholder: "Zip Code"}) %>
+   <%= submit_tag "Sign me up!" %>
+<% end %>
+
+
+</body>
+<!--  
+<%= text_field(:FNAME, :address, {id: "FNAME", placeholder: "First Name"}) %>
+   <%= text_field(:LNAME, :address, {id: "LNAME", placeholder: "Last Name"}) %>
+
+   -->

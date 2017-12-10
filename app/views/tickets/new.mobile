@@ -1,0 +1,59 @@
+<% content_for :title, "New Seat" %>
+
+<div data-role="header" data-position="fixed"> 
+  <h1>Enter New Seat</h1>
+        
+      <% unless user_signed_in? %>
+      <%= link_to 'Sign Up', new_user_registration_path, "class" => "ui-btn-right" %>
+
+      <% else %>
+        	<%= link_to "Back", tickets_path, "class" => "ui-btn-right"  %>
+      <% end %>
+</div>
+<div data-role="content"> 
+
+	<%= form_for(@ticket) do |f| %>
+		<p>
+			<%= f.label "Departure Date: " %><br/>
+	    <%= f.date_field :departure_date, :placeholder => 'Departure Date' %>
+	  </p>
+
+	  <p>
+	    <%= f.label "Departure Airport: " %><br />
+
+	    <%= f.select(:departure_airport, options_for_select(@airports), {:include_blank => true}, class: 'form-control', id: 'simple-example') %>
+		</p>
+
+		<p>
+	    <%= f.label "Airline: " %><br/>
+	    <%= f.select(:airline, options_for_select(@airlines), {:include_blank => true}, class: 'form-control', id: 'simple-example2') %>
+		</p>
+
+	  <p>
+	    <%= f.label "Flight Number: " %><br/>
+	    <%= f.text_field :flight_num, :placeholder => 'Flight Number' %>
+		</p>
+
+	  <p>
+	    <%= f.label "Seat Number: " %><br/>
+	    <%= f.text_field :seat_num, :placeholder => 'Seat Number' %>
+		</p>
+
+	  <p>
+	    <%= f.label "Seat Description: " %><br/>
+	    <%= f.text_field :seat_desc, :placeholder => 'Seat Description (i.e. Window Seat, Exit Row, Economy +' %>
+		</p>
+
+	   <p>
+	    <%= f.label "Price: " %><br/>
+	    <%= f.text_field :price, :placeholder => '$ amount needed to swap your seat' %>
+		</p>
+
+		<p><%= f.submit "Create" %></p>
+	<% end %>
+</div>
+
+
+
+	
+

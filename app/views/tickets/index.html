@@ -1,0 +1,41 @@
+<% content_for :title, "Seats" %>
+<h3> My Seats </h3>
+		<% current_userid = current_user.id %>
+		<% current_userid %>
+		<% if @ticket.count==0 %>
+			<h3>You have not posted any seats</h3>
+			<%= link_to "Add your seat now", new_ticket_path, method: "get" %>
+		<% else %>
+			 <%= link_to "Add new seat", new_ticket_path, method: "get" %>
+			<table class="table">
+	      <thead>
+	        <tr>
+	          <th>Departure Date</th>
+	          <th>Departure Airport</th>
+	          <th>Airline</th>
+	          <th>Flight Number</th>
+	          <th>Seat Number</th>
+	          <th>Seat Description</th>
+	          <th>Price</th>
+	          <th>Actions</th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	      <% @ticket.each do |ticket| %>
+	        <tr>
+	          <td><%= ticket.departure_date %></td>
+	          <td><%= ticket.departure_airport %></td>
+	          <td><%= ticket.airline %></td>
+	          <td><%= ticket.flight_num %></td>
+	          <td><%= ticket.seat_num %></td>
+	          <td><%= ticket.seat_desc %></td>
+	          <td><%= number_to_currency(ticket.price) %></td>
+	          <td>
+						  <%= link_to 'Delete this seat', ticket_path(ticket.id),method: :delete, data: {confirm: "Are you sure?"} %></td>
+	        </tr>
+	      <% end %>
+	      </tbody>
+	    </table>
+		<% end %>
+
+ 		

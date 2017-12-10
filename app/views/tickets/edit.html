@@ -1,0 +1,44 @@
+<% content_for :title, "Edit seat" %>
+<h3>Edit Seat Information</h3>
+
+	<%= link_to "Back", tickets_path %>
+
+	<%= simple_form_for(@ticket) do |f| %>
+	  <div class="field">
+	    <%= f.label "Departure Airport: " %><br />
+	    <%= f.text_field :departure_airport, :placeholder => 'Departure Airport' %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label "Departure Date: " %><br/>
+	    <%= f.date_field :departure_date, :placeholder => 'Departure Date' %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label "Airline: " %><br/>
+	    <%= f.text_field :airline, :placeholder => 'Airline' %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label "Flight Number: " %><br/>
+	    <%= f.text_field :flight_num, :placeholder => 'Flight Number' %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label "Seat Number: " %><br/>
+	    <%= f.text_field :seat_num, :placeholder => 'Seat Number' %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label "Seat Description: " %><br/>
+	    <%= f.text_field :seat_desc, :placeholder => 'Seat Description' %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label "Price: " %><br/>
+	    <%= f.text_field :price, :placeholder => 'Price' %>
+	  </div>
+	  <div class="actions">
+	    <%= f.submit "Update" %>
+	  </div>
+	<% end %>

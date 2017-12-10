@@ -1,0 +1,25 @@
+<% header "Start Conversation" %>
+
+<div class="form-group" style="margin-bottom: 15px; margin-top: 15px">
+  <%= label_tag 'To:' %>
+  <%= "#{@chosen_recipient.username}" %>
+</div>
+
+<%= form_tag messages_path, method: :post do %>
+  <div class="form-group">
+    <%= label_tag 'message[subject]', 'Subject' %>
+    <%= text_field_tag 'message[subject]', nil, class: 'form-control', required: true, value: "Swap Request: #{@ticket.airline} flight #{@ticket.flight_num} on #{@ticket.departure_date}, seat #{@ticket.seat_num}" %>
+  </div>
+
+    <div class="form-group">
+    <%= label_tag 'message[body]', 'Message' %>
+    <%= text_area_tag 'message[body]', nil, cols: 3, class: 'form-control', required: true %>
+  </div>
+
+  <div style="visibility: hidden; margin-top: -55px" >
+    <%= label_tag 'recipients', 'Choose recipients' %>
+    <%= select_tag 'recipients', recipients_options(@chosen_recipient), :readonly => true, class: 'form-control chosen-it' %>
+  </div>
+
+  <%= submit_tag 'Send', class: 'btn btn-primary' %>
+<% end %>

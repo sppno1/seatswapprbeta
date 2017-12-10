@@ -1,0 +1,46 @@
+<% content_for :title, "New Seat" %>
+<h3>Enter New Seat Information</h3>
+
+	<%= link_to "Back", tickets_path %>
+
+	<%= form_for(@ticket) do |f| %>
+	  <div class="form-group">
+	    <%= f.label "Departure Date: " %><br/>
+	    <%= f.date_field :departure_date, :placeholder => 'Departure Date', class: 'form-control' %>
+	  </div>
+
+	  <div class="form-group">
+	    <%= f.label "Departure Airport: " %><br />
+	    <%= f.select(:departure_airport, options_for_select(@airports), {:include_blank => true}, class: 'form-control', id: 'simple-example') %>
+	  </div>
+
+		<div class="form-group">
+	    <%= f.label "Airline: " %><br/>
+	    <%= f.select(:airline, options_for_select(@airlines), {:include_blank => true}, class: 'form-control', id: 'simple-example2') %>
+	  </div>
+
+	  <div class="form-group">
+	    <%= f.label "Flight Number: " %><br/>
+	    <%= f.text_field :flight_num, :placeholder => 'Flight Number', class: 'form-control' %>
+	  </div>
+
+	  <div class="form-group">
+	    <%= f.label "Seat Number: " %><br/>
+	    <%= f.text_field :seat_num, :placeholder => 'Seat Number', class: 'form-control' %>
+	  </div>
+
+	  <div class="form-group">
+	    <%= f.label "Seat Description: " %><br/>
+	    <%= f.text_field :seat_desc, :placeholder => 'Seat Description (i.e. Window Seat, Exit Row, Economy +', class: 'form-control' %>
+	  </div>
+
+	   <div class="form-group">
+	    <%= f.label "Price: " %><br/>
+	    <%= f.text_field :price, :placeholder => '$ amount needed to swap your seat', class: 'form-control' %>
+	  </div>
+
+	  <div class="actions">
+	    <%= f.submit "Create", class: 'btn btn-primary' %>
+	  </div>
+	<% end %>
+

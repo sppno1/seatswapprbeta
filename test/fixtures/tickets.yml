@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  departure_airport: MyString
+  airline: MyString
+  flight_num: MyString
+  departure_date: 2015-09-23
+  departure_time: 2015-09-23 11:45:55
+  seat_num: MyString
+  price: 9.99
+
+two:
+  departure_airport: MyString
+  airline: MyString
+  flight_num: MyString
+  departure_date: 2015-09-23
+  departure_time: 2015-09-23 11:45:55
+  seat_num: MyString
+  price: 9.99

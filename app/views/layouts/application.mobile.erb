@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:title) %></title>
+    
+      <!-- Include jQuery Mobile stylesheets -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      <%= javascript_include_tag 'autocomplete-rails.js' %>
+      <%= javascript_include_tag :application %>
+
+
+      <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+      <!-- Include the jQuery library -->
+      <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+      <!-- Include the jQuery Mobile library -->
+      <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+      <%= csrf_meta_tag %>
+
+
+  </head>
+    <base href="/">
+    
+  <body>
+    
+    <div data-role="page" id="home" data-url="<%= request.path %>">
+    
+      <div data-role="header">
+        
+      </div>
+       
+      <%= yield %>
+      <% if user_signed_in? %>
+
+        <div data-role="footer" data-position="fixed", style="text-align: center;">
+        <%= link_to "My Seats", tickets_path, method: "get"  %>
+         <%= link_to "Search", new_search_path %>
+         <%= link_to "Inbox", conversations_path %>
+         <%= link_to "Me", edit_user_registration_path %>
+         <a href="#popupMenu" data-rel="popup" data-role="button" data-inline="true" data-icon="arrow-u">More</a>
+          <div data-role="popup" id="popupMenu">
+            <ul data-role="listview" data-inset="true" >
+              <li><%= link_to "FAQ", faq_path %></li>
+              <li><%= link_to "About Us", faq_path %></li>
+              <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </div>
+        </div>
+        <% else %>
+        <% end %>
+  </div>
+
+  
+
+</body>
+</html>
